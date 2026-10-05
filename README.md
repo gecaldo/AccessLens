@@ -113,3 +113,8 @@ The collector reads users, account settings, groups, and direct group membership
 This project is intentionally limited to account properties and group membership. It does not try to cover AD ACLs, Kerberos attack paths, delegation, trusts, AD CS, or exploitation.
 
 The severity levels and the default 90-day stale-account threshold are choices I made for this project so the findings can be prioritized. They are not meant to be universal security standards.
+
+## Demo
+![AccessLens Report](Screenshot1.png)
+![AccessLens Report](Screenshot2.png)
+![AccessLens Report](Screenshot3.png)
