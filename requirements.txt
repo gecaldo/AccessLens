@@ -1,0 +1,2 @@
+# Only external package used for the HTML report template.
+Jinja2>=3.1,<4

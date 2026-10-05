@@ -1,0 +1,129 @@
+{
+  "_note": "Sample AD data used to test AccessLens without connecting to a live domain.",
+  "generated_at": "2026-10-05T12:00:00+00:00",
+  "users": [
+    {
+      "id": "user:richard",
+      "name": "Richard Lee",
+      "sam_account_name": "richard",
+      "sid": "S-1-5-21-1000-1000-1000-1101",
+      "enabled": true,
+      "password_never_expires": false,
+      "password_not_required": false,
+      "last_logon_date": "2026-10-01T09:15:00+00:00",
+      "password_last_set": "2026-08-15T08:00:00+00:00"
+    },
+    {
+      "id": "user:backup-admin",
+      "name": "Backup Admin",
+      "sam_account_name": "backup-admin",
+      "sid": "S-1-5-21-1000-1000-1000-1102",
+      "enabled": false,
+      "password_never_expires": false,
+      "password_not_required": false,
+      "last_logon_date": "2026-06-12T11:00:00+00:00",
+      "password_last_set": "2026-05-01T08:00:00+00:00"
+    },
+    {
+      "id": "user:svc-backup",
+      "name": "Backup Service",
+      "sam_account_name": "svc-backup",
+      "sid": "S-1-5-21-1000-1000-1000-1103",
+      "enabled": true,
+      "password_never_expires": true,
+      "password_not_required": false,
+      "last_logon_date": "2026-10-04T05:30:00+00:00",
+      "password_last_set": "2026-01-15T08:00:00+00:00"
+    },
+    {
+      "id": "user:legacy-admin",
+      "name": "Legacy Admin",
+      "sam_account_name": "legacy-admin",
+      "sid": "S-1-5-21-1000-1000-1000-1104",
+      "enabled": true,
+      "password_never_expires": false,
+      "password_not_required": false,
+      "last_logon_date": "2026-02-01T10:00:00+00:00",
+      "password_last_set": "2026-01-10T08:00:00+00:00"
+    },
+    {
+      "id": "user:bob",
+      "name": "Bob Kim",
+      "sam_account_name": "bob",
+      "sid": "S-1-5-21-1000-1000-1000-1105",
+      "enabled": true,
+      "password_never_expires": false,
+      "password_not_required": true,
+      "last_logon_date": "2026-10-03T13:10:00+00:00",
+      "password_last_set": "2026-09-01T08:00:00+00:00"
+    },
+    {
+      "id": "user:guest",
+      "name": "Guest",
+      "sam_account_name": "Guest",
+      "sid": "S-1-5-21-1000-1000-1000-501",
+      "enabled": true,
+      "password_never_expires": false,
+      "password_not_required": true,
+      "last_logon_date": null,
+      "password_last_set": null
+    }
+  ],
+  "groups": [
+    {
+      "id": "group:Domain Admins",
+      "name": "Domain Admins",
+      "sam_account_name": "Domain Admins",
+      "members": [
+        "user:backup-admin",
+        "user:legacy-admin",
+        "group:IT-Admins"
+      ]
+    },
+    {
+      "id": "group:Enterprise Admins",
+      "name": "Enterprise Admins",
+      "sam_account_name": "Enterprise Admins",
+      "members": []
+    },
+    {
+      "id": "group:Schema Admins",
+      "name": "Schema Admins",
+      "sam_account_name": "Schema Admins",
+      "members": []
+    },
+    {
+      "id": "group:Administrators",
+      "name": "Administrators",
+      "sam_account_name": "Administrators",
+      "members": [
+        "user:bob"
+      ]
+    },
+    {
+      "id": "group:Backup Operators",
+      "name": "Backup Operators",
+      "sam_account_name": "Backup Operators",
+      "members": [
+        "user:svc-backup",
+        "user:bob"
+      ]
+    },
+    {
+      "id": "group:IT-Admins",
+      "name": "IT-Admins",
+      "sam_account_name": "IT-Admins",
+      "members": [
+        "group:HelpDesk"
+      ]
+    },
+    {
+      "id": "group:HelpDesk",
+      "name": "HelpDesk",
+      "sam_account_name": "HelpDesk",
+      "members": [
+        "user:richard"
+      ]
+    }
+  ]
+}

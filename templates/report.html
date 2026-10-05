@@ -1,0 +1,150 @@
+<!-- HTML template used by src/report.py for the AccessLens results page. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AccessLens Report</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #17212b;
+      --muted: #667085;
+      --border: #e4e7ec;
+      --critical: #7a271a;
+      --high: #b54708;
+      --medium: #b54708;
+      --low: #175cd3;
+      --info: #475467;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Segoe UI, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 36px 24px 60px;
+    }
+
+    h1 { margin: 0 0 6px; font-size: 32px; }
+    .subtitle { color: var(--muted); margin-bottom: 28px; }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .card .label { color: var(--muted); font-size: 13px; }
+    .card .value { font-size: 28px; font-weight: 700; margin-top: 6px; }
+
+    .finding {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    .finding-head {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+    }
+
+    .critical { color: var(--critical); }
+    .high { color: var(--high); }
+    .medium { color: var(--medium); }
+    .low { color: var(--low); }
+    .info { color: var(--info); }
+
+    .title { font-size: 18px; font-weight: 700; }
+    .meta { color: var(--muted); font-size: 13px; }
+
+    .detail {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 8px 14px;
+    }
+
+    .detail strong { font-size: 13px; }
+    .detail div { line-height: 1.5; }
+
+    .empty {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>AccessLens</h1>
+    <div class="subtitle">
+      Active Directory privilege and account audit · Snapshot: {{ generated_at }}
+    </div>
+
+    <div class="summary">
+      <div class="card"><div class="label">Users</div><div class="value">{{ user_count }}</div></div>
+      <div class="card"><div class="label">Groups</div><div class="value">{{ group_count }}</div></div>
+      <div class="card"><div class="label">Findings</div><div class="value">{{ total_findings }}</div></div>
+      <div class="card"><div class="label">Critical</div><div class="value">{{ counts.get("CRITICAL", 0) }}</div></div>
+      <div class="card"><div class="label">High</div><div class="value">{{ counts.get("HIGH", 0) }}</div></div>
+      <div class="card"><div class="label">Medium</div><div class="value">{{ counts.get("MEDIUM", 0) }}</div></div>
+    </div>
+
+    {% if findings %}
+      {% for finding in findings %}
+      <section class="finding">
+        <div class="finding-head">
+          <span class="badge {{ finding.severity|lower }}">{{ finding.severity }}</span>
+          <span class="meta">{{ finding.rule_id }}</span>
+          <span class="title">{{ finding.title }}</span>
+        </div>
+
+        <div class="detail">
+          <strong>Account / Group</strong>
+          <div>{{ finding.account }}</div>
+
+          <strong>Evidence</strong>
+          <div>{{ finding.evidence }}</div>
+
+          <strong>Recommendation</strong>
+          <div>{{ finding.recommendation }}</div>
+        </div>
+      </section>
+      {% endfor %}
+    {% else %}
+      <div class="empty">No findings for this snapshot.</div>
+    {% endif %}
+  </div>
+</body>
+</html>
